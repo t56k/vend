@@ -15,7 +15,7 @@ pub fn create_item(new_item: NewItem, conn: &PgConnection) -> QueryResult<Item> 
         .get_result(conn)
 }
 
-pub fn show_items(connection: &PgConnection) -> QueryResult<Vec<Item>>  {
+pub fn show_items(connection: &PgConnection) -> QueryResult<Vec<Item>> {
     items.limit(5).load::<Item>(&*connection)
 }
 
@@ -30,6 +30,5 @@ pub fn update_item(item_id: i32, item: Item, connection: &PgConnection) -> Query
 }
 
 pub fn delete_item(item_id: i32, connection: &PgConnection) -> QueryResult<usize> {
-    diesel::delete(items::table.find(item_id))
-        .execute(connection)
+    diesel::delete(items::table.find(item_id)).execute(connection)
 }

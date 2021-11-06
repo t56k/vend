@@ -1,4 +1,5 @@
-type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;pub fn init_pool() -> Pool {
+type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
+pub fn init_pool() -> Pool {
     let manager = ConnectionManager::<PgConnection>::new(database_url());
     Pool::new(manager).expect("db pool")
 }
